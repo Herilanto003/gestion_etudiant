@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Etudiant {
+  id            Int      @id @default(autoincrement())
+  matricule     String   @unique @db.VarChar(20)
+  nom           String   @db.VarChar(100)
+  prenom        String   @db.VarChar(100)
+  dateNaissance DateTime @db.Date
+  email         String   @unique @db.VarChar(150)
+  telephone     String?  @db.VarChar(20)
+  adresse       String?  @db.VarChar(255)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  inscriptions Inscription[]
+
+  @@map("etudiants")
+}
+
+model Cours {
+  id          Int      @id @default(autoincrement())
+  code        String   @unique @db.VarChar(20)
+  intitule    String   @db.VarChar(150)
+  description String?  @db.Text
+  credits     Int      @default(3)
+  professeur  String   @db.VarChar(100)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  inscriptions Inscription[]
+
+  @@map("cours")
+}
+
+model Inscription {
+  id              Int      @id @default(autoincrement())
+  etudiantId      Int
+  coursId         Int
+  anneeAcademique String   @db.VarChar(9) // Ex: "2023-2024"
+  semestre        Int      @default(1) // 1 ou 2
+  note            Float?   @db.Float
+  dateInscription DateTime @default(now())
+
+  // Relations
+  etudiant Etudiant @relation(fields: [etudiantId], references: [id], onDelete: Cascade)
+  cours    Cours    @relation(fields: [coursId], references: [id], onDelete: Cascade)
+
+  // Contrainte d'unicité
+  @@unique([etudiantId, coursId, anneeAcademique, semestre])
+  @@map("inscriptions")
+}

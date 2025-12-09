@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* === THEME PERSONNALISÉ (v4) === */
+@theme {
+  /* Fonts */
+  --font-jetbrains: "JetBrains Mono", monospace;
+
+  /* Colors (gray scale) */
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+  --color-gray-950: #0a0a0a;
+
+  /* Animations */
+  --animate-fade-in: fade-in 0.3s ease-in-out;
+  --animate-slide-in: slide-in 0.3s ease-out;
+}
+
+/* === Keyframes === */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
