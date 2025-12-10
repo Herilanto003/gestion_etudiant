@@ -40,17 +40,23 @@ pipeline {
 
         stage('Run Prisma Migration') {
             steps {
-                sh '''
-                ansible-playbook -i ${ANSIBLE_DIR}/inventory ${ANSIBLE_DIR}/deploy.yaml --tags migrate
-                '''
+                ansiblePlaybook(
+                    playbook: 'ansible/deploy.yml',
+                    inventory: 'ansible/inventory',
+                    tags: 'migrate',
+                    colorized: true
+                )
             }
         }
 
         stage('Deploy to k3s') {
             steps {
-                sh '''
-                ansible-playbook -i ${ANSIBLE_DIR}/inventory ${ANSIBLE_DIR}/deploy.yaml --tags deploy
-                '''
+                ansiblePlaybook(
+                    playbook: 'ansible/deploy.yml',
+                    inventory: 'ansible/inventory',
+                    tags: 'deploy',
+                    colorized: true
+                )
             }
         }
     }
