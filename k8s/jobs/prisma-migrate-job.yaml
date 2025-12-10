@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: prisma-migrate
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+      - name: prisma
+        image: herylanto/ge-backend:latest
+        command: ["sh", "-c", "npx prisma migrate deploy"]
+        envFrom:
+        - secretRef:
+            name: backend-env
+      restartPolicy: Never
