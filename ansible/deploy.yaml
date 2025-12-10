@@ -1,0 +1,20 @@
+- hosts: k3s
+  become: yes
+  tasks:
+    - name: Prisma migrate
+      tags: migrate
+      kubernetes.core.k8s:
+        state: present
+        src: ../k8s/jobs/prisma-migrate-job.yaml
+
+    - name: Deploy Backend
+      tags: deploy
+      kubernetes.core.k8s:
+        state: present
+        src: ../k8s/backend-deployment.yaml
+
+    - name: Deploy Frontend
+      tags: deploy
+      kubernetes.core.k8s:
+        state: present
+        src: ../k8s/frontend-deployment.yaml
