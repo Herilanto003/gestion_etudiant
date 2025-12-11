@@ -47,27 +47,14 @@ pipeline {
             }
         }
 
-        stage('Run Prisma Migration') {
+        stage('Deploy backend') {
             steps {
                  sh """
-                    kubectl apply -f k8s/jobs/prisma-migrate-job.yaml --kubeconfig k8s/jobs/k3s.yaml
+                    kubectl apply -f k8s/backend-deployment.yaml --kubeconfig k8s/jobs/k3s.yaml
                 """
             }
         }
 
-        stage('Deploy to k3s') {
-            steps {
-                ansiblePlaybook(
-                    playbook: 'ansible/deploy.yaml',
-                    inventory: 'ansible/inventory',
-                    tags: 'deploy',
-                    colorized: true,
-                    become: true,
-                    becomeUser: 'root',
-                    extraVars: [ansible_become_pass: '  ']
-                )
-            }
-        }
     }
 
     post {
