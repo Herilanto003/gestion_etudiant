@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
       - name: prisma
-        image: herylanto/ge-backend:latest
+        image: herylanto/backend:latest
         command: ["sh", "-c", "npx prisma migrate deploy"]
         envFrom:
         - secretRef:
