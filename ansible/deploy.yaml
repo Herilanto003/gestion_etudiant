@@ -6,15 +6,18 @@
       kubernetes.core.k8s:
         state: present
         src: ../k8s/jobs/prisma-migrate-job.yaml
+        kubeconfig: /etc/rancher/k3s/k3s.yaml
 
     - name: Deploy Backend
       tags: deploy
       kubernetes.core.k8s:
         state: present
         src: ../k8s/backend-deployment.yaml
+        kubeconfig: /etc/rancher/k3s/k3s.yaml
 
     - name: Deploy Frontend
       tags: deploy
       kubernetes.core.k8s:
         state: present
         src: ../k8s/frontend-deployment.yaml
+        kubeconfig: /etc/rancher/k3s/k3s.yaml
