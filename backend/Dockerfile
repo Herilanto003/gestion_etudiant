@@ -1,4 +1,4 @@
-FROM node:22-alpine
+FROM node:22-bullseye
 
 # Installer les dépendances pour Prisma
 RUN apt-get update && \
