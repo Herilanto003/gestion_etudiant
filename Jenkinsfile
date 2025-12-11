@@ -52,7 +52,7 @@ pipeline {
         stage('Deploy to k3s') {
             steps {
                 ansiblePlaybook(
-                    playbook: 'ansible/deploy.yml',
+                    playbook: 'ansible/deploy.yaml',
                     inventory: 'ansible/inventory',
                     tags: 'deploy',
                     colorized: true
