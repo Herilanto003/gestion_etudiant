@@ -40,15 +40,9 @@ pipeline {
 
         stage('Run Prisma Migration') {
             steps {
-                ansiblePlaybook(
-                    playbook: 'ansible/deploy.yaml',
-                    inventory: 'ansible/inventory',
-                    tags: 'migrate',
-                    colorized: true,
-                    become: true,
-                    becomeUser: 'root',
-                    extraVars: [ansible_become_pass: '  ']
-                )
+                 sh """
+                    kubectl apply -f k8s/jobs/prisma-migrate-job.yaml --kubeconfig k8s/jobs/k3s.yaml
+                """
             }
         }
 
