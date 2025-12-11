@@ -6,12 +6,21 @@ pipeline {
         BACKEND_IMAGE = "${env.REGISTRY}/backend:latest"
         FRONTEND_IMAGE = "${env.REGISTRY}/frontend:latest"
         ANSIBLE_DIR = "ansible"
+        DATABASE_URL = credentials('DATABASE_URL')
     }
 
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Herilanto003/gestion_etudiant.git'
+            }
+        }
+        
+        stage('Migration Prisma') {
+            steps {
+                sh """
+                cd backend && npx prisma migrate deploy
+                """
             }
         }
 
