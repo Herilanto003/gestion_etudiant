@@ -19,4 +19,4 @@ spec:
         - containerPort: 3001
         envFrom:
           - secretRef:
-              name: backend-env
+              name: env-backend
