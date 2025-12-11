@@ -55,6 +55,14 @@ pipeline {
             }
         }
 
+        stage('Deploy frontend') {
+            steps {
+                 sh """
+                    kubectl apply -f k8s/frontend-deployment.yaml --kubeconfig k8s/jobs/k3s.yaml
+                """
+            }
+        }
+
     }
 
     post {
