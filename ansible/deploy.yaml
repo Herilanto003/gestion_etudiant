@@ -1,4 +1,4 @@
-- hosts: k3s
+- hosts: master
   become: yes
   tasks:
     - name: Prisma migrate
