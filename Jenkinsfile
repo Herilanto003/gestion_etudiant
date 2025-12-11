@@ -55,7 +55,10 @@ pipeline {
                     playbook: 'ansible/deploy.yaml',
                     inventory: 'ansible/inventory',
                     tags: 'deploy',
-                    colorized: true
+                    colorized: true,
+                    become: true,
+                    becomeUser: 'root',
+                    extraVars: [ansible_become_pass: '  ']
                 )
             }
         }
