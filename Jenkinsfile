@@ -41,7 +41,7 @@ pipeline {
         stage('Run Prisma Migration') {
             steps {
                 ansiblePlaybook(
-                    playbook: 'ansible/deploy.yml',
+                    playbook: 'ansible/deploy.yaml',
                     inventory: 'ansible/inventory',
                     tags: 'migrate',
                     colorized: true
