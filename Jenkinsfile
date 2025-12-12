@@ -51,6 +51,7 @@ pipeline {
             steps {
                  sh """
                     kubectl apply -f k8s/backend-deployment.yaml --kubeconfig k8s/jobs/k3s.yaml
+                    kubectl rollout restart deployment/backend-deployment --kubeconfig k8s/jobs/k3s.yaml
                 """
             }
         }
@@ -59,6 +60,8 @@ pipeline {
             steps {
                  sh """
                     kubectl apply -f k8s/frontend-deployment.yaml --kubeconfig k8s/jobs/k3s.yaml
+                    kubectl rollout restart deployment/frontend-deployment --kubeconfig k8s/jobs/k3s.yaml
+                    
                 """
             }
         }
