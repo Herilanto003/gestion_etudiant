@@ -104,7 +104,7 @@ const EtudiantList = () => {
         <div>
           <h2 className="text-2xl font-bold text-white">Étudiants</h2>
           <p className="text-gray-400">
-            Gestion des étudiants ({etudiants.length} total)
+           Student management ({etudiants.length} total)
           </p>
         </div>
 
