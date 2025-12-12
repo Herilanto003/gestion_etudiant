@@ -178,7 +178,7 @@ const EtudiantList = () => {
             }}
           >
             <FiPlus className="w-4 h-4" />
-            Ajouter un étudiant
+           Nouveau étudiant
           </Button>
         </div>
       ) : (
