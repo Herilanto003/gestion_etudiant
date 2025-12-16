@@ -223,7 +223,7 @@ const Dashboard = () => {
           <div className="flex items-center justify-between mb-6">
             <div>
               <h3 className="text-lg font-semibold text-white">
-                Inscriptions par mois
+AZERTY
               </h3>
               <p className="text-sm text-gray-400">
                 Année {new Date().getFullYear()}
