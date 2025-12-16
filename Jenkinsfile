@@ -27,8 +27,8 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 sh '''
-                docker build --no-cache -t ${BACKEND_IMAGE} ./backend
-                docker build --no-cache -t ${FRONTEND_IMAGE} ./frontend
+                docker build -t ${BACKEND_IMAGE} ./backend
+                docker build -t ${FRONTEND_IMAGE} ./frontend
                 '''
             }
         }
@@ -50,7 +50,8 @@ pipeline {
         stage('Deploy backend') {
             steps {
                  sh """
-                    kubectl set image deployment/backend backend=${BACKEND_IMAGE} --kubeconfig k8s/jobs/k3s.yaml
+                    kubectl apply -f k8s/backend-deployment.yaml --kubeconfig k8s/jobs/k3s.yaml
+                    kubectl rollout restart deployment/backend --kubeconfig k8s/jobs/k3s.yaml
                 """
             }
         }
@@ -58,7 +59,8 @@ pipeline {
         stage('Deploy frontend') {
             steps {
                  sh """
-                    kubectl set image deployment/frontend frontend=${FRONTEND_IMAGE} --kubeconfig k8s/jobs/k3s.yaml
+                    kubectl apply -f k8s/frontend-deployment.yaml --kubeconfig k8s/jobs/k3s.yaml
+                    kubectl rollout restart deployment/frontend --kubeconfig k8s/jobs/k3s.yaml
                 """
             }
         }
