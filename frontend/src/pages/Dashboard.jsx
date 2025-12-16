@@ -187,7 +187,7 @@ const Dashboard = () => {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-bold text-white">Dashboard</h2>
+        <h2 className="text-2xl font-bold text-white">Tableau de bord</h2>
         <p className="text-gray-400">Azerty</p>
       </div>
 
