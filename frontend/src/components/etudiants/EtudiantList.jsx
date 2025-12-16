@@ -102,7 +102,7 @@ const EtudiantList = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-white">Étudiants</h2>
+          <h2 className="text-2xl font-bold text-white">Students</h2>
           <p className="text-gray-400">
            Student management ({etudiants.length} total)
           </p>
